@@ -295,6 +295,21 @@ def create_relevant_dataframes(all_preprints_filename):
             else:
                 if re.search(keyword, abstract, re.IGNORECASE):
                     RelevantPreprintsDf.loc[RelevantPreprintsDf.index[a], keyword] += 1
+
+         # Same procedure for the abstract:
+        for a, abstract in RelevantPreprintsDf["authors"].items():
+            if abstract is np.nan:
+                # If the abstract is NaN, skip this iteration:
+                continue
+            
+            if keyword not in RelevantPreprintsDf.columns:
+                RelevantPreprintsDf[keyword] = np.zeros(len(RelevantPreprintsDf)).tolist()
+                if re.search(keyword, abstract, re.IGNORECASE):
+                    RelevantPreprintsDf.loc[RelevantPreprintsDf.index[a], keyword] = 1
+            else:
+                if re.search(keyword, abstract, re.IGNORECASE):
+                    RelevantPreprintsDf.loc[RelevantPreprintsDf.index[a], keyword] += 1
+    
     
     # Replace all NaN's with zeros
     RelevantPreprintsDf = RelevantPreprintsDf.fillna(0)
