@@ -1,0 +1,10 @@
+paper-to-check.rtf
+archive/*.eml
+relevant_preprints/old
+all_preprints/all*
+.DS_Store
+*/.DS_Store
+#queue/.DS_Store
+#all_preprints/.DS_Store
+#relevant_preprints/.DS_Store
+#archive/.DS_Store
